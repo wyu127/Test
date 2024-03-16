@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://co446cj522fj1"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_tvgxd"]
+[ext_resource type="Texture2D" uid="uid://bcwv1hbh0plxq" path="res://ship.png" id="2_ejopi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y8op"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3lq"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(0, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnyyl"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y3sl"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(64, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1utj"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cyw8"]
+atlas = ExtResource("2_ejopi")
+region = Rect2(32, 24, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ld02y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y8op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y3lq")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnyyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y3sl")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1utj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cyw8")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uoblb"]
+radius = 22.0
+height = 76.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jhkht"]
+
+[node name="Player" type="Area2D"]
+position = Vector2(214, 197)
+script = ExtResource("1_tvgxd")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ld02y")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uoblb")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jhkht")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
