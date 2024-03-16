@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://df2jq7c6f7176"]
+[gd_scene load_steps=5 format=3 uid="uid://p1oa4crpgabg"]
 
 [ext_resource type="Script" path="res://villain.gd" id="1_fsmu0"]
-[ext_resource type="Texture2D" uid="uid://ddvkwyuadtcs6" path="res://meteor.png" id="1_y2jxg"]
+[ext_resource type="Texture2D" uid="uid://v0h8clf1xplg" path="res://meteor.png" id="1_y2jxg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ic37p"]
 animations = [{
