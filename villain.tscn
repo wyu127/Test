@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://df2jq7c6f7176"]
+
+[ext_resource type="Script" path="res://villain.gd" id="1_fsmu0"]
+[ext_resource type="Texture2D" uid="uid://ddvkwyuadtcs6" path="res://meteor.png" id="1_y2jxg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ic37p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y2jxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vcle"]
+radius = 47.5159
+height = 255.764
+
+[node name="Villain" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_fsmu0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -0.529994)
+scale = Vector2(0.766667, 0.7085)
+sprite_frames = SubResource("SpriteFrames_ic37p")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, -11)
+rotation = 0.959931
+shape = SubResource("CapsuleShape2D_0vcle")
