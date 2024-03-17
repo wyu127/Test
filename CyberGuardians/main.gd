@@ -4,25 +4,29 @@ extends Node
 var score
 
 func game_over():
-	$VillainTimer.stop()
-	#$HUD.show_game_over()
+	$ScoreTimer.stop()
+	$villainTimer.stop()
+	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
 
 
 func new_game():
-	get_tree().call_group(&"villains", &"queue_free")
-	#score = 0
+	get_tree().call_group(&"villain", &"queue_free")
+	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-	#$HUD.update_score(score)
+	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	$Music.play()
 
 
-func _on_Villain_Timer_timeout():
+func _on_villainTimer_timeout():
 	# Create a new instance of the Mob scene.
 	var villain = villain_scene.instantiate()
 
 	# Choose a random location on Path2D.
-	var villain_spawn_location = get_node(^"VillainPath/VillainSpawnLocation")
+	var villain_spawn_location = get_node(^"villainPath/villainSpawnLocation")
 	villain_spawn_location.progress = randi()
 
 	# Set the mob's direction perpendicular to the path direction.
@@ -42,21 +46,11 @@ func _on_Villain_Timer_timeout():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(villain)
 
+func _on_ScoreTimer_timeout():
+	score += 1
+	$HUD.update_score(score)
+
 
 func _on_StartTimer_timeout():
-	$MobTimer.start()
+	$villainTimer.start()
 	$ScoreTimer.start()
-
-func _on_player_hit():
-	pass # Replace with function body.
-
-
-func _on_villain_timer_timeout():
-	pass # Replace with function body.
-
-
-func _on_start_timer_timeout():
-	pass # Replace with function body.
-	
-func _ready():
-	new_game()

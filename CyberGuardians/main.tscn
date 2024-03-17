@@ -14,22 +14,24 @@ script = ExtResource("1_mv3lr")
 
 [node name="Player" parent="." instance=ExtResource("1_7mopk")]
 
-[node name="VillainTimer" type="Timer" parent="Player"]
+[node name="villainTimer" type="Timer" parent="Player"]
 wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="Player"]
 wait_time = 2.0
 one_shot = true
 
+[node name="scoreTimer" type="Timer" parent="Player"]
+
 [node name="StartPosition" type="Marker2D" parent="Player"]
 position = Vector2(240, 450)
 
-[node name="MobPath" type="Path2D" parent="."]
+[node name="villainPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_xe45k")
 
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+[node name="villainSpawnLocation" type="PathFollow2D" parent="villainPath"]
 position = Vector2(0, -7.75)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="timeout" from="Player/VillainTimer" to="." method="_on_villain_timer_timeout"]
+[connection signal="timeout" from="Player/villainTimer" to="." method="_on_villain_timer_timeout"]
 [connection signal="timeout" from="Player/StartTimer" to="." method="_on_start_timer_timeout"]

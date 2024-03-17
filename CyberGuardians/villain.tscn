@@ -1,38 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://p1oa4crpgabg"]
+[gd_scene load_steps=6 format=3 uid="uid://p1oa4crpgabg"]
 
 [ext_resource type="Script" path="res://villain.gd" id="1_fsmu0"]
 [ext_resource type="Texture2D" uid="uid://v0h8clf1xplg" path="res://meteor.png" id="1_y2jxg"]
+[ext_resource type="Texture2D" uid="uid://dathckv0qv5ve" path="res://meteor2.png" id="3_1ibvq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ic37p"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_y2jxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1ibvq")
 }],
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y2jxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1ibvq")
+}],
+"loop": true,
+"name": &"default2",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vcle"]
 radius = 47.5159
 height = 255.764
 
-[node name="Villain" type="RigidBody2D"]
+[node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_fsmu0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(582, 260)
+position = Vector2(-6.99988, 8.00005)
 scale = Vector2(0.766667, 0.7085)
 sprite_frames = SubResource("SpriteFrames_ic37p")
-frame_progress = 0.86611
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(589, 250)
+position = Vector2(-3, -3.99998)
 rotation = 0.959931
 shape = SubResource("CapsuleShape2D_0vcle")
